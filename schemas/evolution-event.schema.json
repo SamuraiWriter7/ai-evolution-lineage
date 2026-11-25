@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Evolution Lineage Graph v0.1",
+  "description": "A minimal evidence-based schema for recording AI evolution events, lineage relationships, and evidence records.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "spec_version",
+    "events",
+    "relationships",
+    "evidence"
+  ],
+  "properties": {
+    "spec_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "events": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/evolution_event"
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/lineage_relationship"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidence_record"
+      }
+    }
+  },
+  "$defs": {
+    "non_empty_string": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "event_id": {
+      "type": "string",
+      "pattern": "^EVT-[0-9]+(?![\\s\\S])"
+    },
+    "relationship_id": {
+      "type": "string",
+      "pattern": "^REL-[0-9]+(?![\\s\\S])"
+    },
+    "evidence_id": {
+      "type": "string",
+      "pattern": "^EVD-[0-9]+(?![\\s\\S])"
+    },
+    "event_date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}(?![\\s\\S])"
+    },
+    "evolution_layer": {
+      "type": "string",
+      "enum": [
+        "technology",
+        "implementation",
+        "question",
+        "resource",
+        "governance"
+      ]
+    },
+    "relationship_type": {
+      "type": "string",
+      "enum": [
+        "derived_from",
+        "influenced_by",
+        "responds_to",
+        "enabled_by",
+        "constrained_by",
+        "related_to"
+      ]
+    },
+    "evidence_status": {
+      "type": "string",
+      "enum": [
+        "confirmed",
+        "inferred",
+        "unknown"
+      ]
+    },
+    "evidence_source_type": {
+      "type": "string",
+      "enum": [
+        "research_paper",
+        "technical_report",
+        "official_statement",
+        "release_note",
+        "repository",
+        "user_feedback",
+        "regulatory_document",
+        "incident_report",
+        "evaluation_report",
+        "other"
+      ]
+    },
+    "source_uri": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^[hH][tT][tT][pP][sS]?://[^\\s/?#]+[^\\s]*(?![\\s\\S])",
+      "description": "An absolute HTTP or HTTPS URI with a non-empty host and no whitespace."
+    },
+    "actor_list": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/non_empty_string"
+      }
+    },
+    "evidence_reference_list": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/evidence_id"
+      }
+    },
+    "evolution_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_id",
+        "date",
+        "layer",
+        "title",
+        "description",
+        "actors",
+        "evidence_ids"
+      ],
+      "properties": {
+        "event_id": {
+          "$ref": "#/$defs/event_id"
+        },
+        "date": {
+          "$ref": "#/$defs/event_date"
+        },
+        "layer": {
+          "$ref": "#/$defs/evolution_layer"
+        },
+        "title": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "description": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "actors": {
+          "$ref": "#/$defs/actor_list"
+        },
+        "evidence_ids": {
+          "$ref": "#/$defs/evidence_reference_list"
+        }
+      }
+    },
+    "lineage_relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "relationship_id",
+        "source_event_id",
+        "target_event_id",
+        "type",
+        "evidence_status",
+        "evidence_ids",
+        "description"
+      ],
+      "properties": {
+        "relationship_id": {
+          "$ref": "#/$defs/relationship_id"
+        },
+        "source_event_id": {
+          "$ref": "#/$defs/event_id"
+        },
+        "target_event_id": {
+          "$ref": "#/$defs/event_id"
+        },
+        "type": {
+          "$ref": "#/$defs/relationship_type"
+        },
+        "evidence_status": {
+          "$ref": "#/$defs/evidence_status"
+        },
+        "evidence_ids": {
+          "$ref": "#/$defs/evidence_reference_list"
+        },
+        "description": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "evidence_status"
+            ],
+            "properties": {
+              "evidence_status": {
+                "enum": [
+                  "confirmed",
+                  "inferred"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "evidence_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_id",
+        "source_type",
+        "source_uri",
+        "description"
+      ],
+      "properties": {
+        "evidence_id": {
+          "$ref": "#/$defs/evidence_id"
+        },
+        "source_type": {
+          "$ref": "#/$defs/evidence_source_type"
+        },
+        "source_uri": {
+          "$ref": "#/$defs/source_uri"
+        },
+        "description": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      }
+    }
+  }
+}
