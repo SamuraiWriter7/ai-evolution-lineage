@@ -1,0 +1,55 @@
+name: Validate AELG Specification
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate AELG v0.1
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check Python version
+        run: python --version
+
+      - name: Check required files
+        run: |
+          test -f README.md
+          test -f specs/aelg-v0.1.md
+          test -f schemas/evolution-event.schema.json
+          test -f examples/sample-evolution.json
+          test -f scripts/validate.py
+
+      - name: Validate JSON schema syntax
+        run: |
+          python -m json.tool schemas/evolution-event.schema.json > /dev/null
+
+      - name: Validate example JSON syntax
+        run: |
+          python -m json.tool examples/sample-evolution.json > /dev/null
+
+      - name: Check Python syntax
+        run: |
+          python -m py_compile scripts/validate.py
+
+      - name: Validate AELG evolution ledger
+        run: |
+          python scripts/validate.py
+
+      - name: Validation completed
+        run: |
+          echo "AELG v0.1 validation completed successfully."
