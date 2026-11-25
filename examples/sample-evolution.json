@@ -1,0 +1,285 @@
+{
+  "spec_version": "0.1.0",
+  "events": [
+    {
+      "event_id": "EVT-001",
+      "date": "2026-01-01",
+      "layer": "technology",
+      "title": "Publication of an efficient inference method",
+      "description": "A fictional research group publishes a method for reducing unnecessary inference computation.",
+      "actors": [
+        "example-research-group"
+      ],
+      "evidence_ids": [
+        "EVD-001"
+      ]
+    },
+    {
+      "event_id": "EVT-002",
+      "date": "2026-01-05",
+      "layer": "question",
+      "title": "Demand for affordable AI inference",
+      "description": "A fictional user community expresses a need for lower inference costs and reduced resource consumption.",
+      "actors": [
+        "example-user-community"
+      ],
+      "evidence_ids": [
+        "EVD-002"
+      ]
+    },
+    {
+      "event_id": "EVT-003",
+      "date": "2026-01-10",
+      "layer": "resource",
+      "title": "Improved hardware efficiency",
+      "description": "A fictional hardware provider introduces an improvement that reduces computational resource requirements.",
+      "actors": [
+        "example-hardware-provider"
+      ],
+      "evidence_ids": [
+        "EVD-003"
+      ]
+    },
+    {
+      "event_id": "EVT-004",
+      "date": "2026-01-15",
+      "layer": "governance",
+      "title": "Introduction of inference safety requirements",
+      "description": "A fictional governance group publishes requirements for bounded inference execution and permission control.",
+      "actors": [
+        "example-governance-group"
+      ],
+      "evidence_ids": [
+        "EVD-004"
+      ]
+    },
+    {
+      "event_id": "EVT-005",
+      "date": "2026-02-01",
+      "layer": "technology",
+      "title": "Development of an efficient inference architecture",
+      "description": "A fictional developer introduces an inference architecture combining research findings, hardware capabilities, and operational constraints.",
+      "actors": [
+        "example-ai-developer"
+      ],
+      "evidence_ids": [
+        "EVD-005"
+      ]
+    },
+    {
+      "event_id": "EVT-006",
+      "date": "2026-02-15",
+      "layer": "implementation",
+      "title": "Deployment of a bounded inference service",
+      "description": "A fictional service provider deploys an inference service based on the new architecture with resource and permission boundaries.",
+      "actors": [
+        "example-service-provider"
+      ],
+      "evidence_ids": [
+        "EVD-006"
+      ]
+    },
+    {
+      "event_id": "EVT-007",
+      "date": "2026-03-01",
+      "layer": "question",
+      "title": "User feedback on operational limitations",
+      "description": "A fictional user community reports that the bounded inference service is useful but requires more flexible resource allocation.",
+      "actors": [
+        "example-user-community"
+      ],
+      "evidence_ids": [
+        "EVD-007"
+      ]
+    },
+    {
+      "event_id": "EVT-008",
+      "date": "2026-03-15",
+      "layer": "technology",
+      "title": "Introduction of adaptive inference allocation",
+      "description": "A fictional developer introduces adaptive resource allocation while retaining existing safety boundaries.",
+      "actors": [
+        "example-ai-developer"
+      ],
+      "evidence_ids": [
+        "EVD-008"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationship_id": "REL-001",
+      "source_event_id": "EVT-005",
+      "target_event_id": "EVT-001",
+      "type": "derived_from",
+      "evidence_status": "confirmed",
+      "evidence_ids": [
+        "EVD-005"
+      ],
+      "description": "The fictional architecture report explicitly identifies the earlier research method as a technical foundation."
+    },
+    {
+      "relationship_id": "REL-002",
+      "source_event_id": "EVT-005",
+      "target_event_id": "EVT-002",
+      "type": "influenced_by",
+      "evidence_status": "unknown",
+      "evidence_ids": [],
+      "description": "User demand may have influenced the architecture, but the specific relationship has not been established."
+    },
+    {
+      "relationship_id": "REL-003",
+      "source_event_id": "EVT-005",
+      "target_event_id": "EVT-003",
+      "type": "enabled_by",
+      "evidence_status": "confirmed",
+      "evidence_ids": [
+        "EVD-005"
+      ],
+      "description": "The fictional architecture report directly identifies improved hardware efficiency as an enabling condition."
+    },
+    {
+      "relationship_id": "REL-004",
+      "source_event_id": "EVT-005",
+      "target_event_id": "EVT-004",
+      "type": "constrained_by",
+      "evidence_status": "confirmed",
+      "evidence_ids": [
+        "EVD-004",
+        "EVD-005"
+      ],
+      "description": "The fictional architecture report explicitly states that the design incorporates the published safety requirements."
+    },
+    {
+      "relationship_id": "REL-005",
+      "source_event_id": "EVT-006",
+      "target_event_id": "EVT-005",
+      "type": "derived_from",
+      "evidence_status": "confirmed",
+      "evidence_ids": [
+        "EVD-006"
+      ],
+      "description": "The fictional deployment documentation identifies the inference architecture as the technical basis of the service."
+    },
+    {
+      "relationship_id": "REL-006",
+      "source_event_id": "EVT-006",
+      "target_event_id": "EVT-004",
+      "type": "constrained_by",
+      "evidence_status": "confirmed",
+      "evidence_ids": [
+        "EVD-004",
+        "EVD-006"
+      ],
+      "description": "The fictional deployment documentation states that the service implements the defined safety and permission requirements."
+    },
+    {
+      "relationship_id": "REL-007",
+      "source_event_id": "EVT-007",
+      "target_event_id": "EVT-006",
+      "type": "responds_to",
+      "evidence_status": "confirmed",
+      "evidence_ids": [
+        "EVD-007"
+      ],
+      "description": "The fictional feedback record explicitly identifies the deployed inference service as its subject."
+    },
+    {
+      "relationship_id": "REL-008",
+      "source_event_id": "EVT-008",
+      "target_event_id": "EVT-005",
+      "type": "derived_from",
+      "evidence_status": "confirmed",
+      "evidence_ids": [
+        "EVD-008"
+      ],
+      "description": "The fictional revision report identifies the earlier inference architecture as its technical foundation."
+    },
+    {
+      "relationship_id": "REL-009",
+      "source_event_id": "EVT-008",
+      "target_event_id": "EVT-007",
+      "type": "responds_to",
+      "evidence_status": "inferred",
+      "evidence_ids": [
+        "EVD-007",
+        "EVD-008"
+      ],
+      "description": "The feedback and subsequent technical revision address similar resource allocation limitations, suggesting a possible response relationship without direct confirmation."
+    },
+    {
+      "relationship_id": "REL-010",
+      "source_event_id": "EVT-008",
+      "target_event_id": "EVT-004",
+      "type": "constrained_by",
+      "evidence_status": "confirmed",
+      "evidence_ids": [
+        "EVD-004",
+        "EVD-008"
+      ],
+      "description": "The fictional revision report explicitly retains the existing safety and permission boundaries."
+    },
+    {
+      "relationship_id": "REL-011",
+      "source_event_id": "EVT-001",
+      "target_event_id": "EVT-002",
+      "type": "related_to",
+      "evidence_status": "inferred",
+      "evidence_ids": [
+        "EVD-001",
+        "EVD-002"
+      ],
+      "description": "The research method and user requirements address related computational efficiency concerns without establishing causal influence or chronological precedence."
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "EVD-001",
+      "source_type": "research_paper",
+      "source_uri": "https://example.com/aelg/research/efficient-inference",
+      "description": "Fictional research paper describing a method for reducing unnecessary inference computation."
+    },
+    {
+      "evidence_id": "EVD-002",
+      "source_type": "user_feedback",
+      "source_uri": "https://example.com/aelg/feedback/affordable-inference",
+      "description": "Fictional public feedback requesting affordable and resource-efficient AI inference."
+    },
+    {
+      "evidence_id": "EVD-003",
+      "source_type": "technical_report",
+      "source_uri": "https://example.com/aelg/resources/hardware-efficiency",
+      "description": "Fictional technical report describing improved hardware efficiency."
+    },
+    {
+      "evidence_id": "EVD-004",
+      "source_type": "regulatory_document",
+      "source_uri": "https://example.com/aelg/governance/inference-safety",
+      "description": "Fictional governance document defining bounded inference execution and permission requirements."
+    },
+    {
+      "evidence_id": "EVD-005",
+      "source_type": "technical_report",
+      "source_uri": "https://example.com/aelg/technology/inference-architecture",
+      "description": "Fictional architecture report explicitly documenting research inheritance, hardware enablement, and governance constraints."
+    },
+    {
+      "evidence_id": "EVD-006",
+      "source_type": "release_note",
+      "source_uri": "https://example.com/aelg/implementation/bounded-service",
+      "description": "Fictional release documentation identifying the underlying architecture and implemented safety requirements."
+    },
+    {
+      "evidence_id": "EVD-007",
+      "source_type": "user_feedback",
+      "source_uri": "https://example.com/aelg/feedback/resource-allocation",
+      "description": "Fictional user feedback identifying operational limitations in the deployed service and requesting flexible resource allocation."
+    },
+    {
+      "evidence_id": "EVD-008",
+      "source_type": "technical_report",
+      "source_uri": "https://example.com/aelg/technology/adaptive-allocation",
+      "description": "Fictional revision report documenting adaptive inference allocation, architectural inheritance, and preservation of safety boundaries without directly attributing the revision to user feedback."
+    }
+  ]
+}
